@@ -29,7 +29,8 @@ const BLANK_HCP = {
   name: '', specialty: '', hospital: '', city: '', phone: '', email: '', notes: '',
 };
 
-export default function HCPs({ onNavigate: _ }: HCPsProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function HCPs(_props: HCPsProps) {
   const [hcps, setHcps] = useState<HCP[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');

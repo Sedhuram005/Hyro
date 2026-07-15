@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import {
   Search,
   Filter,
-  History,
   Users,
   Calendar,
   Package,
@@ -16,7 +15,7 @@ import {
   Pencil,
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import { Interaction, HCP, Page, NavigateFn, EditTarget } from '../lib/types';
+import { Interaction, HCP, NavigateFn, EditTarget } from '../lib/types';
 import Badge from '../components/Badge';
 
 interface InteractionsProps {

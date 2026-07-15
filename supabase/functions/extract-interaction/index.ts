@@ -161,9 +161,6 @@ function extractSentiment(text: string): "positive" | "neutral" | "negative" | n
 function extractProducts(text: string, knownProducts: string[]): string[] {
   const found: string[] = [];
   const lower = text.toLowerCase();
-  // Check for product correction/removal intent
-  const removeMatch = text.match(/(?:remove|drop|delete)\s+([A-Za-z\s,]+)/i);
-  const isCorrection = /\b(no\s*[,.]?!|not|wrong|actually|change|switch|update|instead)\b/i.test(text);
   for (const product of knownProducts) {
     if (lower.includes(product.toLowerCase())) {
       found.push(product);
@@ -173,10 +170,6 @@ function extractProducts(text: string, knownProducts: string[]): string[] {
 }
 
 function extractHCPName(text: string): string | null {
-  const lower = text.toLowerCase();
-  // Detect correction intent
-  const isCorrection = /\b(no\s*[,.]?!|not|wrong|actually|change|switch|update|correction|instead)\b/i.test(text);
-
   const patterns = [
     // Correction patterns first
     /(?:not\s+(?:Dr\.?\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*))\b/,
@@ -275,7 +268,11 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    const { conversation, known_products = [], current_data = null } = await req.json();
+    const { conversation, known_products = [], current_data = null }: {
+      conversation: string;
+      known_products?: string[];
+      current_data?: CurrentData | null;
+    } = await req.json();
 
     if (!conversation || typeof conversation !== "string") {
       return new Response(

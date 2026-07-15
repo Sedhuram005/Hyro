@@ -11,7 +11,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import { HCP, Interaction, Page, NavigateFn } from '../lib/types';
+import { HCP, Interaction, NavigateFn } from '../lib/types';
 import Badge from '../components/Badge';
 import LineChart from '../components/LineChart';
 

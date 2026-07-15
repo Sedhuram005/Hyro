@@ -487,7 +487,6 @@ export default function LogInteraction({ onNavigate, editTarget }: LogInteractio
               <FormPreview
                 formData={formData}
                 hcps={hcps}
-                products={products}
                 extracted={extracted}
               />
               <div className="px-5 pb-5">
@@ -528,11 +527,10 @@ interface FormPreviewProps {
     notes: string;
   };
   hcps: HCP[];
-  products: Product[];
   extracted?: ExtractedInteraction | null;
 }
 
-function FormPreview({ formData, hcps, products, extracted }: FormPreviewProps) {
+function FormPreview({ formData, hcps, extracted }: FormPreviewProps) {
   const hcp = hcps.find(h => h.id === formData.hcp_id);
 
   return (
